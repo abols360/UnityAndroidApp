@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Anchors.unity
+    guid: b2c155b68387cf74197013f910a829b6
+  - enabled: 0
+    path: Assets/Scenes/AnchorScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  m_configObjects: {}
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: f43f97323b73dc6478df98e30cf0e925, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 6d8996fe376ceb24aaf81891c3ced049, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 378aa8bf1cd84a043a136802a5dd470e, type: 2}
