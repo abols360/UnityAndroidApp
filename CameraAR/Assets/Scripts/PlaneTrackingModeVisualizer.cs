@@ -7,46 +7,26 @@ namespace UnityEngine.XR.ARFoundation.Samples
     /// Manages the plane material color for each recognized plane based on
     /// the <see cref="UnityEngine.XR.ARSubsystems.TrackingState"/> enumeration defined in ARSubsystems.
     /// </summary>
-    [RequireComponent(typeof(ARPlane))]
-    [RequireComponent(typeof(MeshRenderer))]
+
     public class PlaneTrackingModeVisualizer : MonoBehaviour
     {
-        ARPlane m_ARPlane;
-        MeshRenderer m_PlaneMeshRenderer;
-        Color m_OriginalColor;
+        private MeshRenderer planeMeshRenderer;
+        private Color planeMatColor = Color.cyan;
 
-        void Awake()
+        private void Start() 
         {
-            m_ARPlane = GetComponent<ARPlane>();
-            m_PlaneMeshRenderer = GetComponent<MeshRenderer>();
-            m_OriginalColor =  m_PlaneMeshRenderer.material.color;
+            this.planeMeshRenderer = GetComponent<MeshRenderer>();
         }
 
-        void Update()
+        private void Update()
         {
-            UpdatePlaneColor();
+            this.UpdatePlaneColor();
         }
 
-        void UpdatePlaneColor()
+        private void UpdatePlaneColor()
         {
-
-            Color planeMatColor = Color.cyan;
-
-            switch (m_ARPlane.trackingState)
-            {
-                case TrackingState.None:
-                    planeMatColor = Color.grey;
-                    break;
-                case TrackingState.Limited:
-                    planeMatColor = Color.red;
-                    break;
-                case TrackingState.Tracking:
-                    planeMatColor = Color.blue;
-                    break;
-            }
-
-            planeMatColor.a = m_OriginalColor.a;
-            m_PlaneMeshRenderer.material.color = planeMatColor;
+            this.planeMatColor.a = planeMeshRenderer.material.color.a;
+            this.planeMeshRenderer.material.color = planeMatColor;
         }
     }
 }
