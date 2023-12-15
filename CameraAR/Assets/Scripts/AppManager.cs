@@ -6,10 +6,30 @@ using UnityEngine.UI;
 
 public class AppManager : MonoBehaviour
 {
-    
+    [SerializeField] GameObject instruction;
     public void ExitGame() 
     {
         Application.Quit();    
+    }
+
+    public void OpenInstraction() 
+    {
+        Application.Quit();    
+    }
+
+    public void OpenMainScene() 
+    {
+        SceneManager.LoadScene("Anchors");   
+    }
+
+    public void TurnOnInstruction()
+    {
+        instruction.SetActive(true);
+    }
+
+    public void TurnOffInstruction()
+    {
+        instruction.SetActive(false);
     }
 
     public void RestartProject() 
