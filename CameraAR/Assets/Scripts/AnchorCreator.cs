@@ -9,24 +9,35 @@ namespace UnityEngine.XR.ARFoundation.Samples
     [RequireComponent(typeof(ARRaycastManager))]
     public class AnchorCreator : PressInputBase
     {
-        [SerializeField]
-        GameObject m_Prefab;
+        [SerializeField] private GameObject m_Prefab;
 
-        public GameObject prefab
-        {
-            get => m_Prefab;
-            set => m_Prefab = value;
-        }
+        [SerializeField] private int prefabCount = 0;
 
-        public void RemoveAllAnchors()
-        {
-          //  Logger.Log($"Removing all anchors ({m_Anchors.Count})");
-            foreach (var anchor in m_Anchors)
-            {
-                Destroy(anchor.gameObject);
-            }
-            m_Anchors.Clear();
-        }
+        private ARAnchor oldObject; 
+
+        static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+
+        List<ARAnchor> m_Anchors = new List<ARAnchor>();
+
+        ARRaycastManager m_RaycastManager;
+
+        ARAnchorManager m_AnchorManager;
+
+        // public GameObject prefab
+        // {
+        //     get => m_Prefab;
+        //     set => m_Prefab = value;
+        // }
+
+        // public void RemoveAllAnchors()
+        // {
+        //   //  Logger.Log($"Removing all anchors ({m_Anchors.Count})");
+        //     foreach (var anchor in m_Anchors)
+        //     {
+        //         Destroy(anchor.gameObject);
+        //     }
+        //     m_Anchors.Clear();
+        // }
 
         protected override void Awake()
         {
@@ -41,7 +52,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             }
         }
 
-        void SetAnchorText(ARAnchor anchor, string text)
+        private void SetAnchorText(ARAnchor anchor, string text)
         {
             var canvasTextManager = anchor.GetComponent<CanvasTextManager>();
             if (canvasTextManager)
@@ -50,7 +61,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             }
         }
 
-        ARAnchor CreateAnchor(in ARRaycastHit hit)
+        private ARAnchor CreateAnchor(in ARRaycastHit hit)
         {
             ARAnchor anchor = null;
 
@@ -104,6 +115,14 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         protected override void OnPress(Vector3 position)
         {
+            
+            if (prefabCount > 0)
+            {
+                DestroyOldPrefab(this.oldObject);
+                
+            }
+            
+           
             // Raycast against planes and feature points
             const TrackableType trackableTypes =
                 TrackableType.FeaturePoint |
@@ -120,21 +139,27 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 if (anchor != null)
                 {
                     // Remember the anchor so we can remove it later.
-                    m_Anchors.Add(anchor);
+                   // m_Anchors.Add(anchor);
+                   prefabCount ++;
+                   this.oldObject = anchor;
+
                 }
                 else
                 {
                 //    Logger.Log("Error creating anchor");
                 }
+                
+                
             }
+
+            
         }
 
-        static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+        private void DestroyOldPrefab(ARAnchor oldObject)
+        {
+             Destroy(oldObject.gameObject);
+        }
 
-        List<ARAnchor> m_Anchors = new List<ARAnchor>();
-
-        ARRaycastManager m_RaycastManager;
-
-        ARAnchorManager m_AnchorManager;
+        
     }
 }
