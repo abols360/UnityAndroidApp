@@ -890,8 +890,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1470286774}
-        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
-        m_MethodName: RestartProject
+        m_TargetAssemblyTypeName: MainSceneManager, Assembly-CSharp
+        m_MethodName: OpenMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -980,7 +980,7 @@ Transform:
   m_GameObject: {fileID: 1470286771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 425.32367, y: -29.772736, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -995,7 +995,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470286771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa2cd73fd11b2f142ab55e20807bda9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 86d0377d448c877468a740ed5e21aaac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1860063798
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabModel: {fileID: 4241858100910702171, guid: d03ef28f2e100fb49b7798aed58ecfda, type: 3}
-  prefabCount: 0
+  isPrefabAdded: 0
 --- !u!114 &1049101937156121760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,7 +1262,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1470286774}
-        m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: MainSceneManager, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:

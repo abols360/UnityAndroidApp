@@ -4,8 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AppManager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
+    private void Start()
+    {
+        this.TurnOffInstruction();
+    }
+
     [SerializeField] GameObject instruction;
     public void ExitGame() 
     {
@@ -24,22 +29,11 @@ public class AppManager : MonoBehaviour
 
     public void TurnOnInstruction()
     {
-        instruction.SetActive(true);
+        this.instruction.SetActive(true);
     }
 
     public void TurnOffInstruction()
     {
-        instruction.SetActive(false);
-    }
-
-    public void RestartProject() 
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
-        //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // Reload the current scene
-        //SceneManager.LoadScene(currentSceneIndex);
-    }
-
-    
+        this.instruction.SetActive(false);
+    }   
 }
