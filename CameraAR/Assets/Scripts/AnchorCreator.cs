@@ -11,7 +11,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
     {
         [SerializeField] private GameObject prefabModel;
 
-        [SerializeField] private bool isPrefabAdded = false;
+        private bool isPrefabAdded = false;
 
         private ARAnchor oldObject; 
 

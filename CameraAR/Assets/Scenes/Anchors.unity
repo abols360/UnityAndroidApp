@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart
+  m_text: Back
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 1450476512}
   - component: {fileID: 1450476511}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,8 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56ad77b37ce82334bab43e3fafc12d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabModel: {fileID: 4241858100910702171, guid: d03ef28f2e100fb49b7798aed58ecfda, type: 3}
-  isPrefabAdded: 0
+  prefabModel: {fileID: 1342889782683910774, guid: 3b75e02ed0a6c514a8f7fda278336cd6, type: 3}
 --- !u!114 &1049101937156121760
 MonoBehaviour:
   m_ObjectHideFlags: 0
