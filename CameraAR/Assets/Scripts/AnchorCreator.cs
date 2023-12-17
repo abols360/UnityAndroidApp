@@ -17,7 +17,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         private int activeChildIndex = 0;
         private int nextChildIndex = 1;
 
-        private int previousChildIndex = 0;
+        private int previousChildIndex;
 
         private ARAnchor oldObject; 
 
@@ -40,7 +40,23 @@ namespace UnityEngine.XR.ARFoundation.Samples
         private void Start() 
         {
             this.prefabChildCount = this.prefabModel.transform.childCount;
-            this.previousChildIndex = this.prefabChildCount;
+            previousChildIndex = prefabChildCount - 1;
+            for(int i = 0; i < prefabChildCount; i++) 
+            {
+                if (i == 0)
+                {
+                    this.prefabModel.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    this.prefabModel.transform.GetChild(i).gameObject.SetActive(false);
+                }
+               
+            }
+            // this.prefabModel.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
+
+
+           // this.previousChildIndex = this.prefabChildCount;
         }
 
         protected override void OnPress(Vector3 position)
@@ -101,7 +117,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             {
                 this.activeChildIndex = 0;
             }
-            else if (this.prefabChildCount <= this.nextChildIndex) 
+            if (this.prefabChildCount <= this.nextChildIndex) 
             {
                 this.nextChildIndex = 0;
             }
@@ -110,6 +126,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             this.prefabModel.transform.GetChild(this.nextChildIndex).gameObject.SetActive(true);
             this.oldObject.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
             this.oldObject.transform.GetChild(this.nextChildIndex).gameObject.SetActive(true);
+            this.previousChildIndex = this.activeChildIndex;
             this.activeChildIndex ++;
             this.nextChildIndex ++;
         }
@@ -118,18 +135,19 @@ namespace UnityEngine.XR.ARFoundation.Samples
         {
             if (this.activeChildIndex < 0)
             {
-                this.activeChildIndex = this.prefabChildCount;
+                this.activeChildIndex = this.prefabChildCount - 1;
             }
-            else if (this.previousChildIndex < 0) 
+            if (this.previousChildIndex < 0) 
             {
-                this.previousChildIndex = this.prefabChildCount;
+                this.previousChildIndex = this.prefabChildCount - 1;
             }
             this.prefabModel.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
             this.prefabModel.transform.GetChild(this.previousChildIndex).gameObject.SetActive(true);
             this.oldObject.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
             this.oldObject.transform.GetChild(this.previousChildIndex).gameObject.SetActive(true);
+            this.nextChildIndex = this.activeChildIndex;
             this.activeChildIndex --;
-            this.nextChildIndex --;
+            this.previousChildIndex --;
         }
     }
 }
