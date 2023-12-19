@@ -10,7 +10,8 @@ To use this project, user needs at least Android 7.0 version 'Nougat' (API level
 This project uses Unity version 2022.3.13f1.
 
 ## Bugs at the moment
-When player wants to change to other animal sometime is also change animal position. It happens then, when plane is under next/previus button. 
+When player wants to change to other animal sometime is also change animal position. It happens then, when plane is under next/previus button.
+*Small improvements, now is posible to see those animals, but position changes anyway.  
 
 Sometimes when change animal object position it wanish away, it happens when in background new plain is creating under place, where user is pressed. 
 
