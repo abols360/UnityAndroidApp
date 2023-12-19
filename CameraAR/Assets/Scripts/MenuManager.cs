@@ -6,25 +6,30 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+
+    [SerializeField] private GameObject instruction;
+
+    [SerializeField] private GameObject background;
+
+    [SerializeField] private Material blackMaterial;
+
+
+    
     private void Start()
     {
         this.TurnOffInstruction();
     }
 
-    [SerializeField] GameObject instruction;
     public void ExitGame() 
-    {
-        Application.Quit();    
-    }
-
-    public void OpenInstraction() 
     {
         Application.Quit();    
     }
 
     public void OpenMainScene() 
     {
-        SceneManager.LoadScene("Anchors");   
+        
+        SceneManager.LoadScene("Anchors");  
+        background.GetComponent<MeshRenderer>().material = blackMaterial;
     }
 
     public void TurnOnInstruction()

@@ -1350,6 +1350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instruction: {fileID: 824938479}
+  background: {fileID: 143956966}
+  blackMaterial: {fileID: 2100000, guid: b28eb0ad3492051458a5fe5b325d0555, type: 2}
 --- !u!1 &1461841386
 GameObject:
   m_ObjectHideFlags: 0

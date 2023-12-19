@@ -18,6 +18,4 @@ Sometimes when change animal object position it wanish away, it happens when in 
 
 When cyclye thro animals object list, where is small bug, that on one specific condition previus and next do not work. 
 
-When back is pressed and user open scene again, then button background is same as menu background
-
 ## App demonstration
