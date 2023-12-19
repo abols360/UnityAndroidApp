@@ -9,9 +9,15 @@ namespace UnityEngine.XR.ARFoundation.Samples
     [RequireComponent(typeof(ARRaycastManager))]
     public class AnchorCreator : PressInputBase
     {
-        [SerializeField] private GameObject prefabModel;
+        public GameObject prefabModel;
 
-        [SerializeField] private bool isPrefabAdded = false;
+        private bool isPrefabAdded = false;
+        private int prefabChildCount = 0;
+
+        private int activeChildIndex = 0;
+        private int nextChildIndex = 1;
+
+        private int previousChildIndex;
 
         private ARAnchor oldObject; 
 
@@ -23,15 +29,39 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         ARAnchorManager m_AnchorManager;
 
+        private Vector3 oldPosition; 
+
         protected override void Awake()
         {
             base.Awake();
-            m_RaycastManager = GetComponent<ARRaycastManager>();
-            m_AnchorManager = GetComponent<ARAnchorManager>();
+            this.m_RaycastManager = GetComponent<ARRaycastManager>();
+            this.m_AnchorManager = GetComponent<ARAnchorManager>();
+        }
+        private void Start() 
+        {
+            this.prefabChildCount = this.prefabModel.transform.childCount;
+            previousChildIndex = prefabChildCount - 1;
+            for(int i = 0; i < prefabChildCount; i++) 
+            {
+                if (i == 0)
+                {
+                    this.prefabModel.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    this.prefabModel.transform.GetChild(i).gameObject.SetActive(false);
+                }
+               
+            }
+            // this.prefabModel.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
+
+
+           // this.previousChildIndex = this.prefabChildCount;
         }
 
         protected override void OnPress(Vector3 position)
         {
+            this.oldPosition = position;
             // Raycast against planes and feature points
             const TrackableType trackableTypes = TrackableType.FeaturePoint | TrackableType.PlaneWithinPolygon;
 
@@ -78,7 +108,46 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         private void DestroyOldPrefab(ARAnchor oldObject)
         {
-             Destroy(oldObject.gameObject);
+             Destroy(this.oldObject.gameObject);
+        }
+
+        public void ShowNextAnimal()
+        {
+            if (this.prefabChildCount <= this.activeChildIndex)
+            {
+                this.activeChildIndex = 0;
+            }
+            if (this.prefabChildCount <= this.nextChildIndex) 
+            {
+                this.nextChildIndex = 0;
+            }
+
+            this.prefabModel.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
+            this.prefabModel.transform.GetChild(this.nextChildIndex).gameObject.SetActive(true);
+            this.oldObject.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
+            this.oldObject.transform.GetChild(this.nextChildIndex).gameObject.SetActive(true);
+            this.previousChildIndex = this.activeChildIndex;
+            this.activeChildIndex ++;
+            this.nextChildIndex ++;
+        }
+
+        public void ShowPreviousAnimal()
+        {
+            if (this.activeChildIndex < 0)
+            {
+                this.activeChildIndex = this.prefabChildCount - 1;
+            }
+            if (this.previousChildIndex < 0) 
+            {
+                this.previousChildIndex = this.prefabChildCount - 1;
+            }
+            this.prefabModel.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
+            this.prefabModel.transform.GetChild(this.previousChildIndex).gameObject.SetActive(true);
+            this.oldObject.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
+            this.oldObject.transform.GetChild(this.previousChildIndex).gameObject.SetActive(true);
+            this.nextChildIndex = this.activeChildIndex;
+            this.activeChildIndex --;
+            this.previousChildIndex --;
         }
     }
 }
