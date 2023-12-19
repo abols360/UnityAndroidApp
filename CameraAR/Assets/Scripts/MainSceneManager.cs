@@ -17,18 +17,5 @@ public class MainSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("MenuScene"); 
     }
-
-    public void ShowNextAnimal()
-    {
-        // animalModels.transform.GetChild(0).gameObject.SetActive(false);
-        // animalModels.transform.GetChild(1).gameObject.SetActive(true);
-       
-    }
-
-    public void ShowPreviousAnimal()
-    {
-      
-    }
-
-    
+  
 }

@@ -11,7 +11,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
     {
         public GameObject prefabModel;
 
-        private bool isPrefabAdded = false;
+        private bool needToDeleteModel = false;
         private int prefabChildCount = 0;
 
         private int activeChildIndex = 0;
@@ -48,28 +48,22 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 else
                 {
                     this.prefabModel.transform.GetChild(i).gameObject.SetActive(false);
-                }
-               
+                }  
             }
-            // this.prefabModel.transform.GetChild(this.activeChildIndex).gameObject.SetActive(false);
-
-
-           // this.previousChildIndex = this.prefabChildCount;
         }
 
         protected override void OnPress(Vector3 position)
         {
-           // this.oldPosition = position;
             // Raycast against planes and feature points
             const TrackableType trackableTypes = TrackableType.FeaturePoint | TrackableType.PlaneWithinPolygon;
 
             // Perform the raycast
             if (m_RaycastManager.Raycast(position, s_Hits, trackableTypes))
             {
-                if (this.isPrefabAdded == true)
+                if (this.needToDeleteModel == true)
                 {
                     this.DestroyOldPrefab(this.oldObject);
-                    this.isPrefabAdded = false;
+                    this.needToDeleteModel = false;
                 }
                 // Raycast hits are sorted by distance, so the first one will be the closest hit.
                 // Create a new anchor
@@ -77,13 +71,12 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 if (anchor != null)
                 {
                    // Remember the anchor so we can remove it later.
-                    //this.DestroyOldPrefab(this.oldObject);
-                   this.isPrefabAdded = true;
+                   this.needToDeleteModel = true;
                    this.oldObject = anchor;
                 }   
                 else
                 {
-                    this.isPrefabAdded = false;
+                    this.needToDeleteModel = false;
                 }          
             }
         }
@@ -99,8 +92,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 if (planeManager != null)
                 {
                     var plane = (ARPlane)hit.trackable;
-                    m_AnchorManager.anchorPrefab = prefabModel;
-                    return m_AnchorManager.AttachAnchor(plane, hit.pose);
+                    this.m_AnchorManager.anchorPrefab = prefabModel;
+                    return this.m_AnchorManager.AttachAnchor(plane, hit.pose);
                 }
             }
             return anchor;
@@ -108,7 +101,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         private void DestroyOldPrefab(ARAnchor old3dModel)
         {
-             Destroy(old3dModel.gameObject);
+            Destroy(old3dModel.gameObject);
         }
 
         public void ShowNextAnimal()

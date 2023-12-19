@@ -26,7 +26,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         private void UpdatePlaneColor()
         {
             this.planeMatColor.a = planeMeshRenderer.material.color.a;
-            this.planeMeshRenderer.material.color = planeMatColor;
+            this.planeMeshRenderer.material.color = this.planeMatColor;
         }
     }
 }
