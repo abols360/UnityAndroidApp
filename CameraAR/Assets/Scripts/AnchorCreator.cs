@@ -23,13 +23,11 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
-        List<ARAnchor> m_Anchors = new List<ARAnchor>();
-
         ARRaycastManager m_RaycastManager;
 
         ARAnchorManager m_AnchorManager;
 
-        private Vector3 oldPosition; 
+        //private Vector3 oldPosition; 
 
         protected override void Awake()
         {
@@ -61,7 +59,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         protected override void OnPress(Vector3 position)
         {
-            this.oldPosition = position;
+           // this.oldPosition = position;
             // Raycast against planes and feature points
             const TrackableType trackableTypes = TrackableType.FeaturePoint | TrackableType.PlaneWithinPolygon;
 
@@ -71,6 +69,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 if (this.isPrefabAdded == true)
                 {
                     this.DestroyOldPrefab(this.oldObject);
+                    this.isPrefabAdded = false;
                 }
                 // Raycast hits are sorted by distance, so the first one will be the closest hit.
                 // Create a new anchor
@@ -78,6 +77,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 if (anchor != null)
                 {
                    // Remember the anchor so we can remove it later.
+                    //this.DestroyOldPrefab(this.oldObject);
                    this.isPrefabAdded = true;
                    this.oldObject = anchor;
                 }   
@@ -106,9 +106,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
             return anchor;
         }
 
-        private void DestroyOldPrefab(ARAnchor oldObject)
+        private void DestroyOldPrefab(ARAnchor old3dModel)
         {
-             Destroy(this.oldObject.gameObject);
+             Destroy(old3dModel.gameObject);
         }
 
         public void ShowNextAnimal()
