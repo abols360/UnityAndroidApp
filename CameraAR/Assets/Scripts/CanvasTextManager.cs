@@ -26,22 +26,5 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 }
             }
         }
-
-        // void OnEnable()
-        // {
-        //     // Hook up the canvas's world space camera
-        //     if (m_TextElement)
-        //     {
-        //         var canvas = m_TextElement.GetComponentInParent<Canvas>();
-        //         if (canvas)
-        //         {
-        //             // var xrOrigin = FindObjectsUtility.FindAnyObjectByType<XROrigin>();
-        //             // if (xrOrigin && xrOrigin.Camera)
-        //             // {
-        //             //     canvas.worldCamera = xrOrigin.Camera;
-        //             // }
-        //         }
-        //     }
-        // }
     }
 }
