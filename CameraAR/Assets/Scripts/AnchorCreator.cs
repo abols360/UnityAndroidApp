@@ -54,11 +54,12 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         protected override void OnPress(Vector3 position)
         {
+
             // Raycast against planes and feature points
             const TrackableType trackableTypes = TrackableType.FeaturePoint | TrackableType.PlaneWithinPolygon;
 
             // Perform the raycast
-            if (m_RaycastManager.Raycast(position, s_Hits, trackableTypes))
+            if (m_RaycastManager.Raycast(position, s_Hits, trackableTypes) && position.y > 250)
             {
                 if (this.needToDeleteModel == true)
                 {

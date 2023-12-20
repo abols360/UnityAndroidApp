@@ -814,7 +814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1003762805}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1108729204}
   - component: {fileID: 1108729203}
   - component: {fileID: 1108729202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1829,7 +1829,7 @@ GameObject:
   - component: {fileID: 1860063801}
   - component: {fileID: 1860063800}
   - component: {fileID: 1860063806}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: XR Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2182,10 +2182,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 65
 --- !u!224 &5713314524606156371
 RectTransform:
   m_ObjectHideFlags: 0
