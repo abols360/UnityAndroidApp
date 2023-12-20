@@ -1350,6 +1350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instruction: {fileID: 824938479}
+  background: {fileID: 143956966}
+  blackMaterial: {fileID: 2100000, guid: b28eb0ad3492051458a5fe5b325d0555, type: 2}
 --- !u!1 &1461841386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,7 +1754,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688106355}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 33ecdc01fcc5ae3449b2016d66a5c63b, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: ff2f2a326693c614a92c2591e5181f2d, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
