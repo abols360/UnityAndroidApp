@@ -12,9 +12,9 @@ This project uses Unity version 2022.3.13f1.
 
 ## Bugs at the moment
 
-Sometimes when change animal object position it wanish away, it happens when in background new plain is creating under place, where user is pressed.(Not happen Often) 
+Sometimes when change animal object position it wanish away, it happens when in background new plain is creating under place, where user is pressed.(Not happens often) 
 
-When cyclye thro animals object list, where is small bug, that on one specific condition previus and next do not work. 
+When cyclye thro animals object list, where is small bug, that on one specific condition previus and next do not work. (Happens on one specific case)
 
 On some views angles there is unneeded exposure.  
 
