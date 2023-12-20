@@ -18,4 +18,7 @@ Sometimes when change animal object position it wanish away, it happens when in 
 
 When cyclye thro animals object list, where is small bug, that on one specific condition previus and next do not work. 
 
+On some views angles there is unneeded exposure.  
+
 ## App demonstration
+https://github.com/abols360/UnityAndroidApp/assets/64954978/62965ced-89cc-4877-81fe-a280ce444e87
