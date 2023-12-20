@@ -19,6 +19,10 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         private int previousChildIndex;
 
+        [SerializeField] private GameObject lowerButton; 
+
+        private int buttonHeight;
+
         private ARAnchor oldObject; 
 
         static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
@@ -37,6 +41,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         }
         private void Start() 
         {
+            this.buttonHeight = (int)this.lowerButton.GetComponent<RectTransform>().rect.height;
             this.prefabChildCount = this.prefabModel.transform.childCount;
             previousChildIndex = prefabChildCount - 1;
             for(int i = 0; i < prefabChildCount; i++) 
@@ -54,11 +59,12 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         protected override void OnPress(Vector3 position)
         {
+
             // Raycast against planes and feature points
             const TrackableType trackableTypes = TrackableType.FeaturePoint | TrackableType.PlaneWithinPolygon;
 
             // Perform the raycast
-            if (m_RaycastManager.Raycast(position, s_Hits, trackableTypes))
+            if (m_RaycastManager.Raycast(position, s_Hits, trackableTypes) && position.y > this.buttonHeight)
             {
                 if (this.needToDeleteModel == true)
                 {
